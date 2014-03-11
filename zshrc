@@ -22,6 +22,7 @@ fi
 if [ -e $HOME/android-sdk-linux ]; then
     export PATH=$PATH:$HOME/android-sdk-linux/tools
 fi
+export PATH=$GOPATH/bin:$PATH
 
 # Pl editor
 export EDITOR="vim"
@@ -32,7 +33,6 @@ alias mgs="python manage.py shell"
 alias mgd="python manage.py dbshell"
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias unquote="python -c 'import sys, urllib; print urllib.unquote_plus(sys.argv[1])'"
-alias golint="go run $HOME/go/src/github.com/golang/lint/golint/golint.go"
 alias jsonize="python -mjson.tool"
 
 # oh-my-zsh confs
