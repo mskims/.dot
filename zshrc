@@ -14,6 +14,7 @@ alias maild="sudo python -c 'import smtpd, asyncore; smtpd.DebuggingServer((\"12
 alias ff='find . -iname'
 alias debug='cat > /tmp/debug.html&&w3m /tmp/debug.html'
 alias vi='vim'
+alias t='tmux a||tmux new-s'
 
 # Path variables
 if [ -e $HOME/bin ]; then
