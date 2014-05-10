@@ -33,7 +33,7 @@
 	url = https://github.com/hynek/vim-python-pep8-indent.git
 [submodule "vim/bundle/colorschemes"]
 	path = vim/bundle/colorschemes
-	url = https://github.com:flazz/vim-colorschemes.git
+	url = https://github.com/flazz/vim-colorschemes.git
 [submodule "vim/bundle/Yggdroot"]
 	path = vim/bundle/Yggdroot
 	url = https://github.com/Yggdroot/indentLine.git
@@ -51,13 +51,13 @@
 	url = https://github.com/gregsexton/MatchTag.git
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/vim-thrift"]
 	path = vim/bundle/vim-thrift
 	url = https://github.com/jigish/vim-thrift.git
 [submodule "vim/bundle/vim-unimpaired"]
 	path = vim/bundle/vim-unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/powerline"]
 	path = vim/bundle/powerline
 	url = https://github.com/Lokaltog/powerline.git
@@ -87,7 +87,7 @@
 	url = https://github.com/bling/vim-airline.git
 [submodule "vim/bundle/vim-colortoggle"]
 	path = vim/bundle/vim-colortoggle
-	url = https://github.com:saghul/vim-colortoggle.git
+	url = https://github.com/saghul/vim-colortoggle.git
 [submodule "vim/bundle/vim-compiler-go"]
 	path = vim/bundle/vim-compiler-go
 	url = https://github.com/rjohnsondev/vim-compiler-go.git
