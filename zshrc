@@ -35,6 +35,7 @@ alias mgd="python manage.py dbshell"
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias unquote="python -c 'import sys, urllib; print urllib.unquote_plus(sys.argv[1])'"
 alias jsonize="python -mjson.tool"
+alias ack-py="ack --type=python"
 
 # oh-my-zsh confs
 # This is the project page: https://github.com/robbyrussell/oh-my-zsh/
@@ -55,3 +56,6 @@ alias sbt="nocorrect sbt"
 alias play="nocorrect play"
 
 export TERM=xterm-256color
+
+# Force activation on venvs
+cd .
