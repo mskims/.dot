@@ -48,3 +48,6 @@ syntax on
 
 " Fix problem with vim-airline not showing the status line until you split
 set laststatus=2
+
+" set the terminal title
+set title

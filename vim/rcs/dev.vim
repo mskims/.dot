@@ -9,3 +9,12 @@ vnoremap <Leader>s :sort<CR>
 autocmd BufWritePre * :%s/\s\+$//e
 
 set nofoldenable
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" copy the previous indentation
+set copyindent
+
+" tabs depending of shiftwidht, not tabstop
+set smarttab

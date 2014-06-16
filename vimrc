@@ -1,3 +1,6 @@
+" avoid side effects
+set nocompatible
+
 call pathogen#infect()
 
 " Shared dev options, remember that python options are on
