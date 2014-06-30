@@ -91,3 +91,9 @@
 [submodule "vim/bundle/vim-compiler-go"]
 	path = vim/bundle/vim-compiler-go
 	url = https://github.com/rjohnsondev/vim-compiler-go.git
+[submodule "vim/bundle/vim-colorscheme-switcher"]
+	path = vim/bundle/vim-colorscheme-switcher
+	url = https://github.com/xolox/vim-colorscheme-switcher.git
+[submodule "vim/bundle/vim-misc"]
+	path = vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc.git
