@@ -28,10 +28,6 @@ if has('gui_running')
     if os == 'Darwin' || os == 'Mac'
         set transparency=3
     endif
-else
-    autocmd VimEnter,ColorScheme,SourceCmd * hi clear SpellBad
-    autocmd VimEnter,ColorScheme,SourceCmd * hi SpellBad cterm=underline ctermfg=red
-    autocmd VimEnter,ColorScheme,SourceCmd * hi Search cterm=underline ctermfg=green
 endif
 
 set number
