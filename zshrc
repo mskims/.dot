@@ -36,12 +36,13 @@ alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 alias unquote="python -c 'import sys, urllib; print urllib.unquote_plus(sys.argv[1])'"
 alias jsonize="python -mjson.tool"
 alias ack-py="ack --type=python"
+alias mvim="mvim --remote-tab-silent"
 
 # oh-my-zsh confs
 # This is the project page: https://github.com/robbyrussell/oh-my-zsh/
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
-plugins=(git mercurial virtualenvwrapper svn python github tmux)
+plugins=(git mercurial virtualenvwrapper svn python tmux osx safe-paste)
 source $ZSH/oh-my-zsh.sh
 
 setopt nocorrect_all
