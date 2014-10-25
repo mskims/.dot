@@ -23,7 +23,6 @@ fi
 if [ -e $HOME/android-sdk-linux ]; then
     export PATH=$PATH:$HOME/android-sdk-linux/tools
 fi
-export PATH=$GOPATH/bin:$PATH
 
 # Pl editor
 export EDITOR="vim"
@@ -49,7 +48,6 @@ setopt nocorrect_all
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-export GOPATH="$HOME/go"
 
 # No autocompletion
 alias git="nocorrect git"
@@ -60,3 +58,11 @@ export TERM=xterm-256color
 
 # Force activation on venvs
 cd .
+
+if [ -e $HOME/.goenv ]; then
+    export PATH="$HOME/.goenv/bin:$PATH"
+    eval "$(goenv init -)"
+else
+    export PATH=$GOPATH/bin:$PATH
+    export GOPATH="$HOME/go"
+fi
