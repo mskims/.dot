@@ -1,0 +1,8 @@
+#!/bin/bash
+
+amixer -c 1 -q set Master toggle
+
+for i in {Headphone,Speaker,Bass\ Speaker};
+do
+  amixer -c 1 -q set "$i" unmute
+done
