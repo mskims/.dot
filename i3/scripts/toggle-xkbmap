@@ -1,0 +1,11 @@
+#!/bin/bash
+
+VARIANT=`setxkbmap -query|grep variant|awk '{ print $2 }'`
+
+if [ "$VARIANT" = "mac" ] ; then
+    VARIANT=mac_intl
+else
+    VARIANT=mac
+fi
+
+setxkbmap -v gb -variant $VARIANT

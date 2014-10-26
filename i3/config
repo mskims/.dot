@@ -15,7 +15,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Cantarel 12
+font pango: Source Code Pro for Powerline 14
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -81,7 +81,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -151,16 +151,32 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status --config ~/.i3/i3status.conf
         workspace_buttons yes
-	tray_output primary
+	tray_output none
 	mode hide
 	hidden_state hide
 	modifier Mod4
+	colors {
+		background #252525
+	}
 }
+
+new_window 1pixel
+new_float normal
+hide_edge_borders both
+
+client.unfocused #444444 #282828 #c80000
+client.focused_inactive #444444 #444444 #2c2c2f
+client.urgent #383a3b #383a3b #ee0000
 
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id nm-applet
 
+bindsym XF86MonBrightnessDown exec xbacklight -steps 1 -time 0 -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -steps 1 -time 0 -inc 5
+bindsym Mod4+Mod1+l exec i3lock
+
 bindsym XF86AudioRaiseVolume exec amixer -c 1 -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -c 1 -q set Master 2dB- unmute
-bindsym XF86AudioMute exec bash ~/.dot/i3/toggle
-bindsym Mod4+Mod1+l exec i3lock
+bindsym XF86AudioMute exec bash ~/.dot/i3/scripts/volume
+
+bindsym Mod4+space exec bash ~/.dot/i3/scripts/toggle-xkbmap
