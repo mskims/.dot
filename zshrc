@@ -62,10 +62,11 @@ cd .
 if [ -e $HOME/.goenv ]; then
     export PATH="$HOME/.goenv/bin:$PATH"
     eval "$(goenv init -)"
+    export GOROOT="~/.goenv/versions/$(goenv version)/"
 else
     export PATH=$GOPATH/bin:$PATH
-    export GOPATH="$HOME/go"
 fi
+export GOPATH="$HOME/go"
 
 # Avoid zsh to complain about bg processes
 setopt NO_HUP

@@ -1,3 +1,5 @@
+set rtp+=$GOROOT/misc/vim
+
 set ts=4
 
 " Format the file before saving
