@@ -66,3 +66,7 @@ else
     export PATH=$GOPATH/bin:$PATH
     export GOPATH="$HOME/go"
 fi
+
+# Avoid zsh to complain about bg processes
+setopt NO_HUP
+setopt NO_CHECK_JOBS
