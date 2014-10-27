@@ -21,7 +21,7 @@ if has('gui_running')
 
     " If we are using the GUI, use proper fonts
     let g:airline_powerline_fonts = 1
-    set guifont=Sauce\ Code\ Powerline\ ExtraLight
+    set guifont=Sauce\ Code\ Powerline\ ExtraLight:h10
 
     " Make it transparent just in the Mac
     let os=substitute(system('uname'), '\n', '', '')

@@ -62,7 +62,7 @@ cd .
 if [ -e $HOME/.goenv ]; then
     export PATH="$HOME/.goenv/bin:$PATH"
     eval "$(goenv init -)"
-    export GOROOT="~/.goenv/versions/$(goenv version)/"
+    export GOROOT="`pwd`/.goenv/versions/$(goenv version)/"
 else
     export PATH=$GOPATH/bin:$PATH
 fi
