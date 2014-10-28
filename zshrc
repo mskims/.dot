@@ -63,11 +63,23 @@ if [ -e $HOME/.goenv ]; then
     export PATH="$HOME/.goenv/bin:$PATH"
     eval "$(goenv init -)"
     export GOROOT="`pwd`/.goenv/versions/$(goenv version)/"
-else
-    export PATH=$GOPATH/bin:$PATH
 fi
+
+export PATH=$GOPATH/bin:$PATH
 export GOPATH="$HOME/go"
 
 # Avoid zsh to complain about bg processes
 setopt NO_HUP
 setopt NO_CHECK_JOBS
+
+
+if [ "$(uname)" = "Darwin" ]; then
+	export DOCKER_HOST=tcp://192.168.59.103:2376
+	export DOCKER_CERT_PATH=/Users/alex/.boot2docker/certs/boot2docker-vm
+	export DOCKER_TLS_VERIFY=1
+fi
+
+CHRUBY_PATH="/usr/local/share/chruby/chruby.sh"
+if [ -e "$CHRUBY_PATH" ]; then
+	source $CHRUBY_PATH
+fi
