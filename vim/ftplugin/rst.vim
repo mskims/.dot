@@ -1,4 +1,4 @@
-set et sw=4 tw=4
+set et sw=4 ts=4
 
 " Underline the current line with dashes in normal mode
 nnoremap t1 yyp<c-v>$r=
