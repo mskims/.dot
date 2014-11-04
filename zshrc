@@ -62,7 +62,7 @@ cd .
 if [ -e $HOME/.goenv ]; then
     export PATH="$HOME/.goenv/bin:$PATH"
     eval "$(goenv init -)"
-    export GOROOT="`pwd`/.goenv/versions/$(goenv version)/"
+    export GOROOT="`echo $HOME`/.goenv/versions/$(goenv version)/"
 fi
 
 export PATH=$GOPATH/bin:$PATH
@@ -83,3 +83,6 @@ CHRUBY_PATH="/usr/local/share/chruby/chruby.sh"
 if [ -e "$CHRUBY_PATH" ]; then
 	source $CHRUBY_PATH
 fi
+
+alias be="bundle exec"
+alias irssi='TERM=screen-256color irssi'
