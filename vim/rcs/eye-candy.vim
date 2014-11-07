@@ -1,11 +1,5 @@
 let &t_Co=256
 
-"highlight Normal ctermfg=LightGrey ctermbg=NONE
-let g:dark_colorscheme = "jelleybeans"
-let g:light_colorscheme = "clarity"
-map <silent><F11> :ToggleBg<CR>
-let g:default_background_type = "dark"
-
 set showcmd " show incomplete commands
 filetype plugin on
 filetype plugin indent on " load file type plugins + indentation

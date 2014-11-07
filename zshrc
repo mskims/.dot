@@ -54,7 +54,7 @@ alias git="nocorrect git"
 alias sbt="nocorrect sbt"
 alias play="nocorrect play"
 
-export TERM=xterm-256color
+export TERM=screen-256color
 
 # Force activation on venvs
 cd .

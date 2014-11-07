@@ -16,6 +16,3 @@ set copyindent
 
 " tabs depending of shiftwidht, not tabstop
 set smarttab
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'

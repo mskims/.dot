@@ -48,6 +48,9 @@ filetype plugin indent on    " required
 
 " Shared dev options, remember that python options are o
 " ~/.vim/ftplugin/python.vim
+so ~/.vim/rcs/vim-airline.vim
+so ~/.vim/rcs/ctrlp.vim
+so ~/.vim/rcs/colortoggle.vim
 so ~/.vim/rcs/dev.vim
 so ~/.vim/rcs/eye-candy.vim
 so ~/.vim/rcs/misc.vim
