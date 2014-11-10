@@ -2,6 +2,3 @@ set rtp+=$GOROOT/misc/vim
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
 set ts=4
-
-" Format the file before saving
-autocmd BufWrite *.go GoFmt
