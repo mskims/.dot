@@ -18,4 +18,6 @@ augroup filetypedetect
     au BufWinEnter *.scss set filetype=css
 
     au BufWinEnter *.thrift set filetype=thrift
+
+    au BufWinEnter *.json set filetype=javascript
 augroup END

@@ -41,7 +41,7 @@ alias mvim="mvim --remote-tab-silent"
 # This is the project page: https://github.com/robbyrussell/oh-my-zsh/
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
-plugins=(git mercurial virtualenvwrapper svn python tmux osx safe-paste)
+plugins=(git mercurial virtualenvwrapper svn python tmux osx safe-paste docker)
 source $ZSH/oh-my-zsh.sh
 
 setopt nocorrect_all
