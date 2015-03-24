@@ -22,9 +22,15 @@ if has('gui_running')
     if os == 'Darwin' || os == 'Mac'
         set transparency=3
     endif
+else
+    " solarized options
+    let g:solarized_visibility = "high"
+    let g:solarized_contrast = "high"
+    "let g:solarized_termtrans=1
+    "let g:solarized_termcolors=256
 endif
 
-set number
+set relativenumber
 
 " Keep 3 lines after/before the cursor
 set so=3

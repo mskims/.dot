@@ -7,7 +7,6 @@ call vundle#begin()
 
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'Yggdroot/indentLine'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'bling/vim-airline'
@@ -57,6 +56,9 @@ so ~/.vim/rcs/misc.vim
 so ~/.vim/rcs/tagbar.vim
 so ~/.vim/rcs/undotree.vim
 so ~/.vim/rcs/vim-airline.vim
+so ~/.vim/rcs/vim-easymotion.vim
 so ~/.vim/rcs/windows.vim
+
+so ~/.vim/rcs/learning.vim
 
 set fenc=utf-8
