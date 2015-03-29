@@ -102,3 +102,5 @@ fi
 alias be="bundle exec"
 alias irssi='TERM=screen-256color irssi'
 alias vi{,m}=nvim
+
+fortune -s -n80 2> /dev/null|cowsay -f small 2> /dev/null|lolcat 2> /dev/null
