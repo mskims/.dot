@@ -2,6 +2,8 @@
 set nocompatible
 filetype off
 
+let g:python_host_prog='/usr/local/bin/python2.7'
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -32,7 +34,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'mileszs/ack.vim'
 Plugin 'nvie/vim-flake8'
-Plugin 'rjohnsondev/vim-compiler-go'
 Plugin 'rosstimson/scala-vim-support'
 Plugin 'saghul/vim-colortoggle'
 Plugin 'scrooloose/nerdtree'
@@ -48,11 +49,13 @@ Plugin 'xolox/vim-misc'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+so ~/.vim/rcs/ansible.vim
 so ~/.vim/rcs/colortoggle.vim
 so ~/.vim/rcs/ctrlp.vim
 so ~/.vim/rcs/dev.vim
 so ~/.vim/rcs/eye-candy.vim
 so ~/.vim/rcs/misc.vim
+so ~/.vim/rcs/pymode.vim
 so ~/.vim/rcs/tagbar.vim
 so ~/.vim/rcs/undotree.vim
 so ~/.vim/rcs/vim-airline.vim

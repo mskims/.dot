@@ -31,11 +31,11 @@ alias manage="python manage.py"
 alias mgr="python manage.py runserver"
 alias mgs="python manage.py shell"
 alias mgd="python manage.py dbshell"
-alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias unquote="python -c 'import sys, urllib; print urllib.unquote_plus(sys.argv[1])'"
 alias jsonize="python -mjson.tool"
 alias ack-py="ack --type=python"
 alias mvim="mvim --remote-tab-silent"
+alias fuck='$(thefuck $(fc -ln -1))'
 
 # oh-my-zsh confs
 # This is the project page: https://github.com/robbyrussell/oh-my-zsh/
@@ -55,6 +55,7 @@ plugins=(
     safe-paste
     tmux
     vagrant
+    vim
     virtualenvwrapper
 )
 source $ZSH/oh-my-zsh.sh
@@ -104,3 +105,8 @@ alias irssi='TERM=screen-256color irssi'
 alias vi{,m}=nvim
 
 fortune -s -n80 2> /dev/null|cowsay -f small 2> /dev/null|lolcat 2> /dev/null
+source /usr/local/opt/autoenv/activate.sh
+
+export ANSIBLE_NOCOWS=1
+
+unalias gb
