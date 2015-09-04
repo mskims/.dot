@@ -75,12 +75,6 @@ export TERM=screen-256color
 # Force activation on venvs
 cd .
 
-if [ -e $HOME/.goenv ]; then
-    export PATH="$HOME/.goenv/bin:$PATH"
-    eval "$(goenv init -)"
-    export GOROOT="`echo $HOME`/.goenv/versions/$(goenv version)/"
-fi
-
 export PATH=$GOPATH/bin:$PATH
 export GOPATH="$HOME/go"
 
@@ -98,6 +92,7 @@ fi
 CHRUBY_PATH="/usr/local/share/chruby/chruby.sh"
 if [ -e "$CHRUBY_PATH" ]; then
 	source $CHRUBY_PATH
+	chruby 2.2.2
 fi
 
 alias be="bundle exec"
@@ -110,3 +105,7 @@ source /usr/local/opt/autoenv/activate.sh
 export ANSIBLE_NOCOWS=1
 
 unalias gb
+
+source /Users/alex/.iterm2_shell_integration.zsh
+
+export GO15VENDOREXPERIMENT=1
