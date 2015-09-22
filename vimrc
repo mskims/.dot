@@ -23,7 +23,6 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'gregsexton/MatchTag'
 Plugin 'honza/vim-snippets'
 Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'jaxbot/github-issues.vim'
 Plugin 'jigish/vim-thrift'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kevinw/pyflakes-vim'
@@ -56,6 +55,7 @@ so ~/.vim/rcs/dev.vim
 so ~/.vim/rcs/eye-candy.vim
 so ~/.vim/rcs/misc.vim
 so ~/.vim/rcs/pymode.vim
+so ~/.vim/rcs/syntactic.vim
 so ~/.vim/rcs/tagbar.vim
 so ~/.vim/rcs/undotree.vim
 so ~/.vim/rcs/vim-airline.vim

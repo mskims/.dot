@@ -82,13 +82,6 @@ export GOPATH="$HOME/go"
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-
-if [ "$(uname)" = "Darwin" ]; then
-	export DOCKER_HOST=tcp://192.168.59.103:2376
-	export DOCKER_CERT_PATH=/Users/alex/.boot2docker/certs/boot2docker-vm
-	export DOCKER_TLS_VERIFY=1
-fi
-
 CHRUBY_PATH="/usr/local/share/chruby/chruby.sh"
 if [ -e "$CHRUBY_PATH" ]; then
 	source $CHRUBY_PATH
@@ -99,7 +92,7 @@ alias be="bundle exec"
 alias irssi='TERM=screen-256color irssi'
 alias vi{,m}=nvim
 
-fortune -s -n80 2> /dev/null|cowsay -f small 2> /dev/null|lolcat 2> /dev/null
+pyjoke 2> /dev/null|cowsay -f small 2> /dev/null|lolcat 2> /dev/null
 source /usr/local/opt/autoenv/activate.sh
 
 export ANSIBLE_NOCOWS=1
@@ -109,3 +102,5 @@ unalias gb
 source /Users/alex/.iterm2_shell_integration.zsh
 
 export GO15VENDOREXPERIMENT=1
+
+eval $(docker-machine env default)
