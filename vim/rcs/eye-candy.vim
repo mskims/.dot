@@ -31,6 +31,7 @@ else
 endif
 
 set relativenumber
+set number
 
 " Keep 3 lines after/before the cursor
 set so=3
@@ -47,3 +48,6 @@ set laststatus=2
 
 " set the terminal title
 set title
+
+" Disable Scratch (autocompletion help window)
+set completeopt-=preview
