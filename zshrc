@@ -82,10 +82,10 @@ export GOPATH="$HOME/go"
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-CHRUBY_PATH="/usr/local/share/chruby/chruby.sh"
+CHRUBY_PATH="/usr/local/opt/chruby/share/chruby/chruby.sh"
 if [ -e "$CHRUBY_PATH" ]; then
 	source $CHRUBY_PATH
-	chruby 2.2.2
+	chruby 2.1.5
 fi
 
 alias be="bundle exec"
@@ -104,3 +104,6 @@ source /Users/alex/.iterm2_shell_integration.zsh
 export GO15VENDOREXPERIMENT=1
 
 eval $(docker-machine env default)
+
+source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
