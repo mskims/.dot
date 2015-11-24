@@ -55,6 +55,7 @@ so ~/.vim/rcs/dev.vim
 so ~/.vim/rcs/eye-candy.vim
 so ~/.vim/rcs/misc.vim
 so ~/.vim/rcs/pymode.vim
+so ~/.vim/rcs/supertab.vim
 so ~/.vim/rcs/syntactic.vim
 so ~/.vim/rcs/tagbar.vim
 so ~/.vim/rcs/undotree.vim
