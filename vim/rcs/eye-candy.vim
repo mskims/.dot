@@ -50,4 +50,4 @@ set laststatus=2
 set title
 
 " Disable Scratch (autocompletion help window)
-set completeopt-=preview
+" set completeopt-=preview
