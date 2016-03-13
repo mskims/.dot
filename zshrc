@@ -42,6 +42,7 @@ alias fuck='$(thefuck $(fc -ln -1))'
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
 plugins=(
+    autoenv
     docker
     git
     github
@@ -75,8 +76,8 @@ export TERM=screen-256color
 # Force activation on venvs
 cd .
 
-export PATH=$GOPATH/bin:$PATH
 export GOPATH="$HOME/go"
+export PATH=$GOPATH/bin:$PATH
 
 # Avoid zsh to complain about bg processes
 setopt NO_HUP
@@ -88,12 +89,16 @@ if [ -e "$CHRUBY_PATH" ]; then
 	chruby 2.1.5
 fi
 
+CHRUBY_AUTO_PATH="/usr/local/opt/chruby/share/chruby/auto.sh"
+if [ -e "$CHRUBY_AUTO_PATH" ]; then
+	source $CHRUBY_AUTO_PATH
+fi
+
 alias be="bundle exec"
 alias irssi='TERM=screen-256color irssi'
 alias vi{,m}=nvim
 
 pyjoke 2> /dev/null|cowsay -f small 2> /dev/null|lolcat 2> /dev/null
-source /usr/local/opt/autoenv/activate.sh
 
 export ANSIBLE_NOCOWS=1
 
