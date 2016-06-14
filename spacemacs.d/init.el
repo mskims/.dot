@@ -39,13 +39,22 @@ values."
      ansible
      chrome
      dockerfile
+     java
      javascript
      elixir
      emoji
      go
      html
      osx
+     python
      ruby
+     terraform
+     thrift
+     grpc
+     latex
+
+     colors
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -56,7 +65,7 @@ values."
    dotspacemacs-excluded-packages
    '(
      smartparens
-   )
+     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -111,9 +120,9 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
                          sanityinc-tomorrow-night
-   		         sanityinc-tomorrow-bright
-   		         sanityinc-tomorrow-eighties
-   		         adwaita)
+                         sanityinc-tomorrow-bright
+                         sanityinc-tomorrow-eighties
+                         adwaita)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -247,31 +256,41 @@ values."
 
 (defun dotspacemacs/
     user-init ()
-  "Initialization function for user code.
+    "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-  )
+    )
+
+(defun indent-some-languages()
+  (case major-mode
+    ((elixir-mode emacs-lisp-mode ruby-mode) (spacemacs/indent-region-or-buffer))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   ;; Fix scrolling in terminal
-  (global-set-key [mouse-4] 'scroll-down-line)
-  (global-set-key [mouse-5] 'scroll-up-line)
+  (unless window-system
+    (global-set-key [mouse-4] 'scroll-down-line)
+    (global-set-key [mouse-5] 'scroll-up-line))
 
-  ;; (global-linum-mode)
-  ;; (linum-relative-toggle)
+  (spacemacs//vcs-spacemacs/toggle-version-control-margin-t)
+  (global-linum-mode)
+  (linum-relative-toggle)
 
-  ;; This minor mode look ugly in the shell
+  ;; This minor mode icons look ugly in the shell
   (spacemacs/toggle-mode-line-minor-modes-off)
 
   ;; The default separator doesn't look nice with Source Code Pro
-  (setq powerline-default-separator 'nil)
+  (setq powerline-default-separator 'nil )
 
   ;; This will do imports instead just formatting the code
   (setq gofmt-command "goimports")
+
+  (setq-default require-final-newline t)
+
+  (add-hook 'before-save-hook 'indent-some-languages)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -283,7 +302,8 @@ layers configuration. You are free to put any user code."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (json-snatcher request haml-mode ham-mode html-to-markdown fringe-helper git-gutter+ web-completion-data dash-functional tern pos-tip elixir-mode powerline hydra auto-complete f inf-ruby gitignore-mode multiple-cursors json-reformat magit magit-popup with-editor async dash bracketed-paste flycheck avy packed anzu smartparens git-gutter git-commit markdown-mode go-mode company projectile helm helm-core yasnippet js2-mode s package-build bind-key bind-map evil color-theme-sanityinc-tomorrow yaml-mode ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package tagedit spacemacs-theme spaceline smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-end rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-delimiters quelpa popwin persp-mode pcre2el pbcopy paradox page-break-lines osx-trash orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme less-css-mode launchctl json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-eldoc gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu emoji-cheat-sheet-plus emmet-mode elisp-slime-nav edit-server dockerfile-mode diff-hl define-word company-web company-tern company-statistics company-quickhelp company-go company-emoji coffee-mode clean-aindent-mode chruby bundler buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ansible-doc ansible alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (parent-mode flx iedit highlight pkg-info epl pyvenv pytest pyenv-mode pip-requirements hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic spinner popup emacs-eclim json-snatcher request haml-mode ham-mode html-to-markdown fringe-helper git-gutter+ web-completion-data dash-functional tern pos-tip elixir-mode powerline hydra auto-complete f inf-ruby gitignore-mode multiple-cursors json-reformat magit magit-popup with-editor async dash bracketed-paste flycheck avy packed anzu smartparens git-gutter git-commit markdown-mode go-mode company projectile helm helm-core yasnippet js2-mode s package-build bind-key bind-map evil color-theme-sanityinc-tomorrow yaml-mode ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package tagedit spacemacs-theme spaceline smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-end rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-delimiters quelpa popwin persp-mode pcre2el pbcopy paradox page-break-lines osx-trash orgit open-junk-file neotree move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative leuven-theme less-css-mode launchctl json-mode js2-refactor js-doc jade-mode info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-eldoc gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-jumper evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu emoji-cheat-sheet-plus emmet-mode elisp-slime-nav edit-server dockerfile-mode diff-hl define-word company-web company-tern company-statistics company-quickhelp company-go company-emoji coffee-mode clean-aindent-mode chruby bundler buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ansible-doc ansible alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
