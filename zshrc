@@ -23,6 +23,9 @@ fi
 if [ -e $HOME/android-sdk-linux ]; then
     export PATH=$PATH:$HOME/android-sdk-linux/tools
 fi
+if [ -e $HOME/terraform ]; then
+    export PATH=$PATH:$HOME/terraform
+fi
 
 # Pl editor
 export EDITOR="vim"
@@ -107,8 +110,6 @@ unalias gb
 source /Users/alex/.iterm2_shell_integration.zsh
 
 export GO15VENDOREXPERIMENT=1
-
-eval $(docker-machine env default)
 
 source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 source '/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
