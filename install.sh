@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 GREEN='\e[0;32m'
 RED='\e[0;31m'
@@ -13,87 +14,77 @@ function warning {
     echo -e "[${RED} WARNING ${RESET}] $1"
 }
 
-#
-# Install oh-my-zsh
-#
-if [ ! -d ~/.oh-my-zsh ]; then
-    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    ok "oh-my-zsh installed"
-else
-    warning "~/.oh-my-zsh already exists, remove it and try again!"
-fi
+function error {
+    echo -e "[${RED} ERROR ${RESET}] $1"
+    exit -1
+}
 
-#
-# Install vim fonts
-#
-if [ ! -d ~/.fonts ]; then
-    git clone https://github.com/Lokaltog/powerline-fonts.git ~/.fonts
-    fc-cache -vf
-    ok "vim fonts installed"
-else
-    warning "You already have some personal fonts, install the vim fonts manually: https://github.com/Lokaltog/powerline-fonts"
-fi
+function is_installed() {
+	if hash $1 2>/dev/null; then
+	    return -1 # does not exist
+	else
+	    return 0 # exist
+	fi
+}
 
-#
-# Install pip if it is not installed yet
-#
-if !(which pip &>> /dev/null); then
-    sudo pacman -S python-pip
-fi
+function update_submodules() {
+    git submodule update --init --recursive
+    ok "Submodules updated"
+}
 
-#
-# Check the needed python dependencies
-#
-pip freeze > /tmp/pip_freeze
+function check_predependencies() {
+    pre_deps=(git pip)
+    for dep in "${pre_deps[@]}"; do
+        if is_installed $dep = -1; then
+            error "You need $dep installed before continue"
+        fi
+    done
+}
 
-function install_if_does_not_exist {
-    if [ "`cat /tmp/pip_freeze|grep $1|wc -l`" -eq "0" ]; then
-        sudo pip install $1
+function install_pips() {
+    packages=(flake8 ropevim pyflakes pyjokes lolcat)
+    for pkg in "${packages[@]}"; do
+        if is_installed $pack = -1; then
+            sudo pip install $pkg
+        fi
+    done
+}
+
+function install_oh_my_zsh() {
+    if [ ! -d ~/.oh-my-zsh ]; then
+        git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+        ok "oh-my-zsh installed"
+    else
+        warning "~/.oh-my-zsh already exists, remove it and try again!"
     fi
 }
 
-install_if_does_not_exist flake8
-install_if_does_not_exist ropevim
-install_if_does_not_exist pyflakes
+function install_fonts() {
 
-#
-# Create all the links
-#
-function warning_if_exists {
-    if [ "$?" == 1 ]; then
-        warning "$1 configuration already exists, remove it and try again!"
+    if [ ! -d ~/.fonts ]; then
+        git clone https://github.com/Lokaltog/powerline-fonts.git ~/.fonts
+        fc-cache -vf
+        ok "vim fonts installed"
+    else
+        warning "You already have some personal fonts, install the vim fonts manually: https://github.com/Lokaltog/powerline-fonts"
     fi
 }
 
-ln -s $PWD/vimrc ~/.vimrc &>> /dev/null
-ln -s $PWD/vim ~/.vim &>> /dev/null
-warning_if_exists vim
-rm $HOME/.vim/vim  # just remove it, don't even bother checking
+function create_links() {
+    links=(vimrc vim zshrc zshenv gitconfig tmux.conf tmate.conf spacemacs.d pdbrc)
+    for link in "${links[@]}"; do
+        if [ -e ~/.$link ]; then
+            warning "~/.$link already exists"
+        else
+            ln -s $PWD/$link ~/.$link
+        fi
+    done
+    ok "Configurations linked properly"
+}
 
-ln -s $PWD/zshrc ~/.zshrc &>> /dev/null
-warning_if_exists zsh
-
-ln -s $PWD/zshenv ~/.zshenv &>> /dev/null
-warning_if_exists zsh
-
-ln -s $PWD/gitconfig ~/.gitconfig &>> /dev/null
-warning_if_exists git
-
-ln -s $PWD/tmux.conf ~/.tmux.conf &>> /dev/null
-warning_if_exists tmux
-
-ln -s $PWD/tmate.conf ~/.tmate.conf &>> /dev/null
-warning_if_exists tmate
-
-ln -s $PWD/spacemacs.d ~/.spacemacs.d &>> /dev/null
-warning_if_exists spacemacs
-
-ln -s $PWD/pdbrc ~/.pdbrc &>> /dev/null
-# Don't need to check
-
-ok "Configurations linked properly"
-
-git submodule update --init --recursive
-ok "Submodules installed & updated"
-
-rm /tmp/pip_freeze
+update_submodules
+check_predependencies
+install_pips
+install_oh_my_zsh
+install_fonts
+create_links
