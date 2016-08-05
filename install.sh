@@ -60,7 +60,6 @@ function install_oh_my_zsh() {
 }
 
 function install_fonts() {
-
     if [ ! -d ~/.fonts ]; then
         git clone https://github.com/Lokaltog/powerline-fonts.git ~/.fonts
         fc-cache -vf
