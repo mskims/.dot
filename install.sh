@@ -73,6 +73,9 @@ rm $HOME/.vim/vim  # just remove it, don't even bother checking
 ln -s $PWD/zshrc ~/.zshrc &>> /dev/null
 warning_if_exists zsh
 
+ln -s $PWD/zshenv ~/.zshenv &>> /dev/null
+warning_if_exists zsh
+
 ln -s $PWD/gitconfig ~/.gitconfig &>> /dev/null
 warning_if_exists git
 
