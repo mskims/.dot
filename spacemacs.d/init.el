@@ -50,8 +50,8 @@ values."
      ruby
      terraform
      thrift
-     grpc
      latex
+     protobuf-mode
 
      colors
      themes-megapack
@@ -264,7 +264,7 @@ in `dotspacemacs/user-config'."
 
 (defun indent-some-languages()
   (case major-mode
-    ((elixir-mode emacs-lisp-mode ruby-mode) (spacemacs/indent-region-or-buffer))))
+    ((web-mode elixir-mode emacs-lisp-mode ruby-mode) (spacemacs/indent-region-or-buffer))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -289,6 +289,11 @@ layers configuration. You are free to put any user code."
   (setq gofmt-command "goimports")
 
   (setq-default require-final-newline t)
+
+  ;; Indentantion levels for different modes
+  (setq web-mode-markup-indent-offset 2)
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
 
   (add-hook 'before-save-hook 'indent-some-languages)
   )
