@@ -1,7 +1,7 @@
 [user]
-	email = agonzalezro@gmail.com
-	name = Álex González
-	signingkey = 74F6172C
+    email = agonzalezro@gmail.com
+    name = Álex González
+    signingkey = 74F6172C
 
 [alias]
     cm = commit -am
@@ -16,9 +16,14 @@
 
 [core]
     excludesfile = /Users/alexgo/.gitignore_global
+
 [push]
-	default = simple
+    default = simple
+
 [color]
     diff = auto
     status = auto
     branch = auto
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
