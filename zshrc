@@ -86,7 +86,6 @@ if [ -e "$CHRUBY_AUTO_PATH" ]; then
     source $CHRUBY_AUTO_PATH
 fi
 
-
 #
 # GCLOUD
 #
@@ -116,4 +115,5 @@ export ANSIBLE_NOCOWS=1
 export GO15VENDOREXPERIMENT=1
 export EDITOR="vim"
 
+cd . # Force reloading of .env & virtual envs
 pyjoke 2> /dev/null|cowsay -f small 2> /dev/null|lolcat 2> /dev/null
