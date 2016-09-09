@@ -18,3 +18,7 @@ export GOPATH=~/go
 if [ -e $GOPATH/bin ]; then
     export PATH=$PATH:$GOPATH/bin
 fi
+
+if [ -e ~/elixir ]; then
+    PATH=$PATH:~/elixir/bin
+fi
