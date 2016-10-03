@@ -45,7 +45,7 @@ alias sbt="nocorrect sbt"
 
 # This is the project page: https://github.com/robbyrussell/oh-my-zsh/
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="ys"
+ZSH_THEME="ys" # ys, kolo & zhann
 plugins=(
     autoenv
     docker
