@@ -20,5 +20,10 @@ if [ -e $GOPATH/bin ]; then
 fi
 
 if [ -e ~/elixir ]; then
-    PATH=$PATH:~/elixir/bin
+    export PATH=$PATH:~/elixir/bin
+fi
+
+DEVBOX=~/code/jobandtalent/devbox
+if [ -e $DEVBOX ]; then
+    export PATH=$PATH:$DEVBOX/bin
 fi
