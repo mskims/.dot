@@ -32,7 +32,7 @@ alias emacs="emacs -nw"
 alias git="nocorrect git"
 alias grep='grep --color=auto'
 alias irssi='TERM=screen-256color irssi'
-alias ls='ls --color=auto'
+alias ls='ls -G'
 alias mvim="mvim --remote-tab-silent"
 alias pep8='pep8 --show-source'
 alias play="nocorrect play"
