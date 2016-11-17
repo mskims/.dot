@@ -298,6 +298,8 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
+
+   go-tab-width 4
    ))
 
 (defun dotspacemacs/user-init ()
