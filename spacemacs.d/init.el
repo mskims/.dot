@@ -316,13 +316,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (case major-mode
     ((web-mode elixir-mode emacs-lisp-mode ruby-mode) (spacemacs/indent-region-or-buffer))))
 
-(defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+(defun user-config/ui()
+                                        ; scroll with mouse
   (unless window-system
     (global-set-key [mouse-4] 'scroll-down-line)
     (global-set-key [mouse-5] 'scroll-up-line))
@@ -332,18 +327,42 @@ you should place your code here."
 
   ;; This minor mode icons look ugly in the shell
   (spacemacs/toggle-mode-line-minor-modes-off)
+  (setq powerline-default-separator 'nil ))
 
-  (setq powerline-default-separator 'nil )
-
-  ;; This will do imports instead just formatting the code
-  (setq gofmt-command "goimports")
-
+(defun user-config/editor()
+  (prettify-symbols-mode)
   (setq-default require-final-newline t)
+  )
 
+(defun user-config/frontend-indentations()
   ;; Indentantion levels for different modes
   (setq web-mode-markup-indent-offset 2)
-  (setq-default js2-basic-offset 2)
-  (setq-default js-indent-level 2)
+
+  (setq-local coffee-tab-width 2) ; coffeescript
+  (setq-local javascript-indent-level 2) ; javascript-mode
+  (setq-local js-indent-level 2) ; js-mode
+  (setq-local js2-basic-offset 2) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq-local web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq-local web-mode-css-indent-offset 2) ; web-mode, css in html file
+  (setq-local web-mode-code-indent-offset 2) ; web-mode, js code in html file
+  (setq-local css-indent-offset 2) ; css-mode
+  )
+
+(defun user-config/language/go()
+  ;; This will do imports instead just formatting the code
+  (setq gofmt-command "goimports"))
+
+(defun dotspacemacs/user-config ()
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
+  (user-config/ui)
+  (user-config/editor)
+  (user-config/frontend-indentations)
+  (user-config/language/go)
 
   (add-hook 'before-save-hook 'indent-some-languages)
   )
