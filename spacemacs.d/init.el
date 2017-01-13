@@ -49,7 +49,6 @@ values."
 
      ansible
      chrome
-     dockerfile
      emacs-lisp
      java
      javascript
@@ -61,9 +60,7 @@ values."
      python
      ruby
      terraform
-     thrift
      latex
-     protobuf-mode
 
      colors
      themes-megapack
@@ -310,11 +307,13 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  )
+
+  (setq exec-path-from-shell-check-startup-files nil))
 
 (defun indent-some-languages()
   (case major-mode
-    ((web-mode elixir-mode emacs-lisp-mode ruby-mode) (spacemacs/indent-region-or-buffer))))
+    ((shell-script-mode web-mode elixir-mode emacs-lisp-mode ruby-mode)
+     (spacemacs/indent-region-or-buffer))))
 
 (defun user-config/ui()
                                         ; scroll with mouse
@@ -331,24 +330,34 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun user-config/editor()
   (prettify-symbols-mode)
-  (setq-default require-final-newline t)
-  )
+  (setq-default require-final-newline t))
 
-(defun user-config/frontend-indentations()
-  ;; Indentantion levels for different modes
-  (setq web-mode-markup-indent-offset 2)
+(defun user-config/indentations()
+  ;; go-tab-width isn't in this list, it's set at the top of this file
 
-  (setq-local coffee-tab-width 2) ; coffeescript
-  (setq-local javascript-indent-level 2) ; javascript-mode
-  (setq-local js-indent-level 2) ; js-mode
-  (setq-local js2-basic-offset 2) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
-  (setq-local web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-  (setq-local web-mode-css-indent-offset 2) ; web-mode, css in html file
-  (setq-local web-mode-code-indent-offset 2) ; web-mode, js code in html file
-  (setq-local css-indent-offset 2) ; css-mode
-  )
+  (setq-local web-mode-markup-indent-offset 2) ; html tags in html file
+  (setq-local web-mode-css-indent-offset 2)    ; css in html file
+  (setq-local web-mode-code-indent-offset 2)   ; js code in html file
+
+  (setq-local javascript-indent-level 2)
+  (setq-local js2-basic-offset 2)
+  (setq-local js-indent-level 2)
+
+  (setq-local css-indent-offset 2)
+
+  (setq-local sh-basic-offset 2)
+  (setq-local sh-indentation 2))
 
 (defun user-config/language/go()
+  ;; skips vendor/
+  (setq flycheck-gometalinter-vendor t)
+
+  ;; only run fast linters
+  (setq flycheck-gometalinter-fast t)
+
+  ;; use in tests files
+  (setq flycheck-gometalinter-test t)
+
   ;; This will do imports instead just formatting the code
   (setq gofmt-command "goimports"))
 
@@ -361,11 +370,24 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (user-config/ui)
   (user-config/editor)
-  (user-config/frontend-indentations)
+  (user-config/indentations)
   (user-config/language/go)
 
-  (add-hook 'before-save-hook 'indent-some-languages)
-  )
+  (add-hook 'before-save-hook 'indent-some-languages))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (hcl-mode elixir-mode go-mode haml-mode auctex tern iedit request markdown-mode autothemer bind-key flycheck projectile eclim bind-map skewer-mode js2-mode git-commit hydra smartparens helm-core yasnippet magit-popup with-editor which-key moe-theme info+ hungry-delete evil-magit dumb-jump highlight company helm magit inf-ruby zonokai-theme zenburn-theme zen-and-art-theme yapfify yaml-mode ws-butler window-numbering web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org terraform-mode tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacemacs-theme spaceline spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode seti-theme scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reverse-theme reveal-in-osx-finder restart-emacs rbenv rake rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme quelpa pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pbcopy pastels-on-dark-theme paradox osx-trash osx-dictionary orgit organic-green-theme org-plus-contrib org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme ob-elixir noctilux-theme niflheim-theme neotree naquadah-theme mwim mustang-theme move-text monokai-theme monochrome-theme molokai-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow macrostep lush-theme lorem-ipsum livid-mode live-py-mode linum-relative link-hint light-soap-theme less-css-mode launchctl json-mode js2-refactor js-doc jinja2-mode jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide ido-vertical-mode hy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio go-guru go-eldoc gmail-message-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme flyspell-correct-helm flycheck-pos-tip flycheck-mix flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme emoji-cheat-sheet-plus emmet-mode elisp-slime-nav edit-server dracula-theme django-theme diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-web company-tern company-statistics company-go company-emoji company-emacs-eclim company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode coffee-mode clues-theme clean-aindent-mode chruby cherry-blossom-theme busybee-theme bundler bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ansible-doc ansible ample-zen-theme ample-theme alect-themes alchemist aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil)))))
