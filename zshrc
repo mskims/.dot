@@ -14,6 +14,9 @@ alias e=emacs
 alias ff='find . -iname'
 alias fgrep='fgrep --color=auto'
 alias fuck='$(thefuck $(fc -ln -1))'
+gs() {
+  git diff --numstat|awk -F"\t" '{a+=$1;r+=$2} END {print "+"a,"-"r}'
+}
 alias jsonize="python -mjson.tool"
 alias maild="sudo python -c 'import smtpd, asyncore; smtpd.DebuggingServer((\"127.0.0.1\", 25), None); asyncore.loop()'"
 alias manage="python manage.py"
@@ -24,7 +27,6 @@ alias pcat='pygmentize -O bg=dark'
 alias t='tmux a||tmux new-s'
 alias unquote="python -c 'import sys, urllib; print urllib.unquote_plus(sys.argv[1])'"
 alias vi='vim'
-alias vi{,m}=nvim
 
 # Overrides
 alias egrep='egrep --color=auto'
@@ -117,3 +119,4 @@ export EDITOR="vim"
 
 cd . # Force reloading of .env & virtual envs
 pyjoke 2> /dev/null|cowsay -f small 2> /dev/null|lolcat 2> /dev/null
+eval "$(rbenv init - zsh)"
