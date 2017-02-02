@@ -324,9 +324,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (global-set-key [mouse-4] 'scroll-down-line)
     (global-set-key [mouse-5] 'scroll-up-line))
 
-  (global-linum-mode)
-  (linum-relative-toggle)
-
   ;; This minor mode icons look ugly in the shell
   (spacemacs/toggle-mode-line-minor-modes-off)
   (setq powerline-default-separator 'nil ))
