@@ -23,7 +23,6 @@ if [ -e ~/elixir ]; then
     export PATH=$PATH:~/elixir/bin
 fi
 
-DEVBOX=~/code/jobandtalent/devbox
-if [ -e $DEVBOX ]; then
-    export PATH=$PATH:$DEVBOX/bin
+if [ -e ~/.rbenv ]; then
+    export PATH=~/.rbenv/shims:$PATH
 fi
