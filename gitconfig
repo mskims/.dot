@@ -24,6 +24,3 @@
     diff = auto
     status = auto
     branch = auto
-
-[url "git@github.com:"]
-    insteadOf = https://github.com/
