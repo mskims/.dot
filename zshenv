@@ -24,5 +24,5 @@ if [ -e ~/elixir ]; then
 fi
 
 if [ -e ~/.rbenv ]; then
-    export PATH=~/.rbenv/shims:$PATH
+    export PATH=~/.rbenv/shims:~/.rbenv/bin:$PATH
 fi
