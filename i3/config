@@ -15,7 +15,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Source Code Pro for Powerline 14
+font pango: Source Code Pro for Powerline 12
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -27,7 +27,7 @@ font pango: Source Code Pro for Powerline 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -168,15 +168,18 @@ client.unfocused #444444 #282828 #c80000
 client.focused_inactive #444444 #444444 #2c2c2f
 client.urgent #383a3b #383a3b #ee0000
 
-exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id nm-applet
-
 bindsym XF86MonBrightnessDown exec xbacklight -steps 1 -time 0 -dec 5
 bindsym XF86MonBrightnessUp exec xbacklight -steps 1 -time 0 -inc 5
-bindsym Mod4+Mod1+l exec i3lock
+bindsym $mod+Escape exec i3lock -c 000000
 
 bindsym XF86AudioRaiseVolume exec amixer -c 1 -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -c 1 -q set Master 2dB- unmute
 bindsym XF86AudioMute exec bash ~/.dot/i3/scripts/volume
 
 bindsym Mod4+space exec bash ~/.dot/i3/scripts/toggle-xkbmap
+
+exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id nm-applet
+exec --no-startup-id setxkbmap -option ctrl:nocaps # caps as control
+exec --no-startup-id nitrogen --restore # easy background
+exec --no-startup-id dunst # notifications

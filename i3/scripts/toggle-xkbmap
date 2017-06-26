@@ -2,10 +2,20 @@
 
 VARIANT=`setxkbmap -query|grep variant|awk '{ print $2 }'`
 
-if [ "$VARIANT" = "mac" ] ; then
-    VARIANT=mac_intl
+if [ "$(uname)" == "Linux" ]; then
+  LANG=us
+  if [ "$VARIANT" = "" ] ; then
+    VARIANT=altgr-intl
+  else
+    VARIANT=intl
+  fi
 else
+  LANG=gb
+  if [ "$VARIANT" = "mac" ] ; then
+    VARIANT=mac_intl
+  else
     VARIANT=mac
+  fi
 fi
 
-setxkbmap -v gb -variant $VARIANT
+setxkbmap -v $LANG -variant $VARIANT
