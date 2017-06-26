@@ -112,7 +112,6 @@ fi
 #
 # OTHERS
 #
-export TERM=screen-256color
 export ANSIBLE_NOCOWS=1
 export GO15VENDOREXPERIMENT=1
 export EDITOR="vim"
